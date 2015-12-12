@@ -113,7 +113,7 @@ window.onload = function(){
     }, 1000/20);
 
     ws.onmessage = function(m) {
-      console.log('websocket message: ' +  m.data);
+      //console.log('websocket message: ' +  m.data);
       var tokens = m.data.split(',');
       var col = parseInt(tokens[0]);
       var row = parseInt(tokens[1]);
@@ -121,7 +121,6 @@ window.onload = function(){
       var g   = parseInt(tokens[3]);
       var b   = parseInt(tokens[4]);
       tiles[col][row] = [r, g, b];
-      console.log(tiles[col][row]);
     };
   })();
 }
