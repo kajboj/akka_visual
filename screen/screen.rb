@@ -36,12 +36,21 @@ __END__
 @@ index
 <html>
 <body>
-<canvas id="tiles" width="256" height="256"></canvas>
+<canvas id="tiles" width="512" height="512"></canvas>
 </body>
 
 <script type="text/javascript">
 window.onload = function(){
   (function(){
+    var c = document.getElementById("tiles");
+    var ctx = c.getContext("2d");
+
+    var screenSize = parseInt(c.getAttribute("width"));
+    var tileCount = 16;
+    var tileSize = screenSize / tileCount;
+    var fadeSpeed = 2;
+    var fps = 20;
+
     function rgb(r, g, b) {
       return 'rgb(' + Math.round(r) + ',' + Math.round(g) + ',' + Math.round(b) + ')';
     }
@@ -91,16 +100,7 @@ window.onload = function(){
     ws.onopen    = function()  { console.log('websocket opened'); };
     ws.onclose   = function()  { console.log('websocket closed'); }
 
-    var c = document.getElementById("tiles");
-    var ctx = c.getContext("2d");
-
-    var screenSize = parseInt(c.getAttribute("width"));
-    var tileCount = 32;
-    var tileSize = screenSize / tileCount;
-    var fadeSpeed = 5;
-    var fps = 20;
-
-    var tiles = createTiles(tileCount, [255, 0, 255]);
+    var tiles = createTiles(tileCount, [128, 128, 128]);
 
     setInterval(function() {
       for(i=0; i<tileCount; i++) {
