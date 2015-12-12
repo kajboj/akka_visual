@@ -19,11 +19,12 @@ def scan(size, r, g, b)
 end
 
 def random(size, r, g, b)
+  a = size.times.to_a
+  coords = a.product(a).shuffle
   while true do
-    light_up(
-      rand(size),
-      rand(size),
-      r, g, b)
+    coords.each do |col, row|
+      light_up(col, row, r, g, b)
+    end
   end
 end
 
